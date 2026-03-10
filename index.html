@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verdana Naturals — Pain & Stress Relief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --cream: #F7F3ED;
+    --warm-white: #FDFAF6;
+    --sage: #7A9E7E;
+    --sage-dark: #4D7A52;
+    --sage-light: #B8D4BB;
+    --earth: #8B6F47;
+    --earth-light: #C4A882;
+    --charcoal: #2C2C2C;
+    --soft-black: #1A1A1A;
+    --muted: #7A7A6E;
+    --border: #E2DDD6;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --red-soft: #C97B6A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom Cursor */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--sage-dark);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--sage);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s;
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+  }
+  .cursor-ring.hovered { transform: translate(-50%, -50%) scale(1.8); opacity: 0.3; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4vw;
+    height: 76px;
+    background: rgba(253, 250, 246, 0.88);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.07); }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--soft-black);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span { color: var(--sage-dark); font-style: italic; }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 1px; background: var(--sage-dark);
+    transform: scaleX(0); transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--sage-dark); }
+  .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+  .nav-actions {
+    display: flex; align-items: center; gap: 1.2rem;
+  }
+  .nav-icon-btn {
+    background: none; border: none;
+    font-size: 1rem; color: var(--charcoal);
+    cursor: none; padding: 6px;
+    position: relative; transition: color 0.2s;
+  }
+  .nav-icon-btn:hover { color: var(--sage-dark); }
+  .cart-badge {
+    position: absolute; top: 0; right: 0;
+    width: 16px; height: 16px;
+    background: var(--sage-dark);
+    color: white; font-size: 0.6rem;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .nav-cta {
+    background: var(--sage-dark);
+    color: white; border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 10px 22px; border-radius: 2px;
+    cursor: none; transition: background 0.25s, transform 0.2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--earth); transform: translateY(-1px); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: none; padding: 4px; }
+  .hamburger span { width: 24px; height: 1.5px; background: var(--charcoal); display: block; transition: all 0.3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 76px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 7vw 5vw 7vw 7vw;
+    position: relative; z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--sage-dark); font-weight: 500;
+    background: rgba(122,158,126,0.12);
+    border: 1px solid rgba(122,158,126,0.3);
+    padding: 7px 16px; border-radius: 100px;
+    margin-bottom: 2rem;
+    width: fit-content;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-tag i { font-size: 0.7rem; }
+
+  .hero-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--soft-black);
+    margin-bottom: 1.8rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero-h1 em {
+    font-style: italic; color: var(--sage-dark);
+    font-weight: 400;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem; line-height: 1.75;
+    color: var(--muted); font-weight: 300;
+    max-width: 480px;
+    margin-bottom: 2.8rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-btns {
+    display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--sage-dark); color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 16px 36px; border-radius: 2px; border: none;
+    cursor: none; text-decoration: none;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-primary:hover {
+    background: var(--earth);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(139,111,71,0.28);
+  }
+
+  .btn-outline {
+    background: transparent; color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 400;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 15px 30px; border-radius: 2px;
+    border: 1px solid var(--border);
+    cursor: none; text-decoration: none;
+    transition: border-color 0.25s, color 0.25s, transform 0.2s;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-outline:hover { border-color: var(--sage-dark); color: var(--sage-dark); transform: translateY(-2px); }
+
+  .hero-trust {
+    display: flex; align-items: center; gap: 1.8rem;
+    margin-top: 3.5rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.8rem; color: var(--muted); letter-spacing: 0.03em;
+  }
+  .trust-item i { color: var(--sage); font-size: 0.85rem; }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--cream);
+    animation: heroImgReveal 1.2s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  @keyframes heroImgReveal {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0% 0 0); }
+  }
+
+  .hero-img-container {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+
+  /* Hero visual — botanical illustration style */
+  .hero-visual {
+    width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse 60% 70% at 60% 40%, rgba(184,212,187,0.4) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 50% at 30% 70%, rgba(196,168,130,0.25) 0%, transparent 60%),
+      var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-circles {
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  .h-circle {
+    position: absolute; border-radius: 50%;
+    border: 1px solid rgba(122,158,126,0.2);
+    animation: rotateSlow linear infinite;
+  }
+  .h-circle:nth-child(1) { width: 340px; height: 340px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 40s; }
+  .h-circle:nth-child(2) { width: 480px; height: 480px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 60s; animation-direction: reverse; }
+  .h-circle:nth-child(3) { width: 200px; height: 200px; top: 15%; right: 10%; border-color: rgba(201,168,76,0.2); animation-duration: 30s; }
+
+  @keyframes rotateSlow {
+    from { transform: translate(-50%,-50%) rotate(0deg); }
+    to { transform: translate(-50%,-50%) rotate(360deg); }
+  }
+
+  .hero-product-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem 1.8rem 2.2rem;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.04);
+    width: 280px;
+    position: relative; z-index: 5;
+    animation: floatCard 4s ease-in-out infinite;
+  }
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .product-card-img {
+    width: 140px; height: 140px;
+    background: linear-gradient(135deg, var(--sage-light) 0%, var(--cream) 100%);
+    border-radius: 50%; margin: 0 auto 1.4rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem; position: relative; overflow: hidden;
+  }
+  .product-card-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.6), transparent 60%);
+  }
+
+  .product-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 500;
+    text-align: center; margin-bottom: 0.3rem;
+  }
+  .product-card-sub {
+    font-size: 0.75rem; color: var(--muted);
+    text-align: center; margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .product-card-stars {
+    display: flex; justify-content: center; gap: 3px;
+    color: var(--gold); font-size: 0.75rem; margin-bottom: 0.8rem;
+  }
+  .product-card-price {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border); padding-top: 0.9rem;
+  }
+  .price-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 500;
+  }
+  .add-btn {
+    background: var(--sage-dark); color: white;
+    border: none; border-radius: 50%;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; cursor: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .add-btn:hover { background: var(--earth); transform: scale(1.1); }
+
+  .hero-badge {
+    position: absolute; top: 2rem; right: 2rem;
+    background: var(--gold);
+    color: white; font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 100px; z-index: 10;
+  }
+
+  /* floating blobs */
+  .blob { position: absolute; border-radius: 50%; pointer-events: none; z-index: 1; }
+  .blob-1 { width: 80px; height: 80px; background: rgba(122,158,126,0.2); top: 10%; left: 5%; animation: blobFloat 5s ease-in-out infinite; }
+  .blob-2 { width: 50px; height: 50px; background: rgba(201,168,76,0.25); bottom: 20%; right: 8%; animation: blobFloat 7s 1s ease-in-out infinite; }
+  .blob-3 { width: 30px; height: 30px; background: rgba(201,120,106,0.2); top: 60%; left: 12%; animation: blobFloat 4s 2s ease-in-out infinite; }
+  @keyframes blobFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.08); }
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-bar {
+    background: var(--sage-dark);
+    color: white; overflow: hidden;
+    white-space: nowrap; padding: 14px 0;
+    position: relative; z-index: 10;
+  }
+  .marquee-track {
+    display: inline-flex; gap: 3rem;
+    animation: marquee 25s linear infinite;
+  }
+  .marquee-item {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400;
+  }
+  .marquee-dot { width: 4px; height: 4px; background: var(--gold-light); border-radius: 50%; display: inline-block; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 100px 7vw; }
+
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--sage-dark); font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+  .section-tag::before, .section-tag::after {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--sage-light);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 300; line-height: 1.15;
+    color: var(--soft-black); margin-bottom: 1.2rem;
+  }
+  .section-title em { font-style: italic; color: var(--sage-dark); }
+
+  .section-sub {
+    font-size: 1rem; color: var(--muted); font-weight: 300;
+    line-height: 1.75; max-width: 540px;
+  }
+
+  /* ── BENEFITS ── */
+  #benefits { background: var(--cream); }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5vw;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .benefits-list { display: flex; flex-direction: column; gap: 2rem; }
+
+  .benefit-item {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding: 1.5rem 1.8rem;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: none;
+  }
+  .benefit-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.07);
+  }
+
+  .benefit-icon {
+    flex-shrink: 0;
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--sage-light), var(--cream));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: var(--sage-dark);
+  }
+
+  .benefit-content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+  .benefit-content p {
+    font-size: 0.88rem; color: var(--muted); line-height: 1.6; font-weight: 300;
+  }
+
+  .benefits-visual {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .benefits-center-img {
+    width: 340px; height: 440px;
+    background: linear-gradient(160deg, var(--sage-light) 0%, var(--earth-light) 50%, var(--cream) 100%);
+    border-radius: 180px 180px 120px 120px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem;
+    position: relative; overflow: hidden;
+    box-shadow: 0 30px 60px rgba(77,122,82,0.18);
+  }
+  .benefits-center-img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 40% 30%, rgba(255,255,255,0.4), transparent 55%);
+  }
+
+  .benefit-stat {
+    position: absolute;
+    background: white;
+    border-radius: 12px;
+    padding: 0.9rem 1.2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .benefit-stat .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 500;
+    color: var(--sage-dark); line-height: 1;
+  }
+  .benefit-stat .stat-label {
+    font-size: 0.72rem; color: var(--muted);
+    letter-spacing: 0.06em; margin-top: 3px;
+  }
+  .benefit-stat-1 { top: 2rem; left: -2rem; }
+  .benefit-stat-2 { bottom: 3rem; right: -2rem; }
+
+  /* ── SHOP ── */
+  #shop { background: var(--warm-white); }
+
+  .shop-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
+  }
+
+  .filter-tabs {
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  .filter-tab {
+    font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 8px 18px; border-radius: 100px;
+    border: 1px solid var(--border);
+    background: none; color: var(--muted);
+    cursor: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .filter-tab.active, .filter-tab:hover {
+    background: var(--sage-dark); color: white; border-color: var(--sage-dark);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: none;
+    position: relative;
+  }
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  }
+
+  .product-img {
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+    position: relative; overflow: hidden;
+  }
+  .product-img.sage-bg { background: linear-gradient(135deg, #dbeedd 0%, #f0f7f1 100%); }
+  .product-img.earth-bg { background: linear-gradient(135deg, #eddfd0 0%, #f7f1ea 100%); }
+  .product-img.gold-bg { background: linear-gradient(135deg, #f7e9c8 0%, #fdf5e6 100%); }
+  .product-img.rose-bg { background: linear-gradient(135deg, #f5d8d3 0%, #fdf1ee 100%); }
+
+  .product-badge {
+    position: absolute; top: 12px; left: 12px;
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 100px;
+  }
+  .badge-new { background: var(--sage-dark); color: white; }
+  .badge-sale { background: var(--red-soft); color: white; }
+  .badge-best { background: var(--gold); color: white; }
+
+  .wishlist-btn {
+    position: absolute; top: 12px; right: 12px;
+    width: 32px; height: 32px;
+    background: white; border: none;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; color: var(--muted);
+    cursor: none; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: color 0.2s, transform 0.2s;
+  }
+  .wishlist-btn:hover { color: var(--red-soft); transform: scale(1.1); }
+
+  .product-info {
+    padding: 1.2rem 1.3rem 1.5rem;
+  }
+  .product-category {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--sage-dark); margin-bottom: 0.4rem; font-weight: 500;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 500;
+    margin-bottom: 0.3rem; line-height: 1.3;
+  }
+  .product-desc-short {
+    font-size: 0.8rem; color: var(--muted); font-weight: 300;
+    margin-bottom: 0.9rem; line-height: 1.5;
+  }
+  .product-stars { display: flex; align-items: center; gap: 6px; margin-bottom: 1rem; }
+  .stars { display: flex; gap: 2px; color: var(--gold); font-size: 0.7rem; }
+  .review-count { font-size: 0.72rem; color: var(--muted); }
+
+  .product-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 1rem;
+  }
+  .product-price {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .price-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 500;
+  }
+  .price-old {
+    font-size: 0.85rem; color: var(--muted);
+    text-decoration: line-through;
+  }
+  .btn-add-cart {
+    background: var(--sage-dark); color: white;
+    border: none; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 9px 16px; cursor: none;
+    transition: background 0.2s, transform 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .btn-add-cart:hover { background: var(--earth); transform: scale(1.03); }
+
+  .shop-view-all {
+    text-align: center; margin-top: 3rem;
+  }
+
+  /* ── INGREDIENTS ── */
+  #ingredients {
+    background: var(--soft-black);
+    color: white;
+  }
+  #ingredients .section-title { color: white; }
+  #ingredients .section-tag { color: var(--sage-light); }
+  #ingredients .section-tag::before, #ingredients .section-tag::after { background: rgba(184,212,187,0.3); }
+  #ingredients .section-sub { color: rgba(255,255,255,0.55); }
+
+  .ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 4rem;
+  }
+
+  .ingredient-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s, transform 0.3s;
+    cursor: none;
+    position: relative; overflow: hidden;
+  }
+  .ingredient-card:hover {
+    background: rgba(122,158,126,0.1);
+    transform: translateY(-4px);
+  }
+  .ingredient-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--sage-dark), var(--gold));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .ingredient-card:hover::before { transform: scaleX(1); }
+
+  .ingredient-emoji { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; }
+  .ingredient-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-weight: 400;
+    margin-bottom: 0.6rem; color: white;
+  }
+  .ingredient-benefit {
+    font-size: 0.8rem; color: rgba(255,255,255,0.45);
+    line-height: 1.65; font-weight: 300;
+  }
+  .ingredient-tag {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--sage-light); border: 1px solid rgba(184,212,187,0.3);
+    padding: 4px 10px; border-radius: 100px;
+  }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--cream); }
+
+  .testimonials-layout {
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 5vw; align-items: start;
+    margin-top: 4rem;
+  }
+
+  .testimonials-summary {
+    position: sticky; top: 100px;
+  }
+  .rating-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; font-weight: 300;
+    color: var(--soft-black); line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .rating-stars-big { color: var(--gold); font-size: 1.1rem; margin-bottom: 0.8rem; display: flex; gap: 4px; }
+  .rating-count { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; }
+
+  .rating-bars { display: flex; flex-direction: column; gap: 0.6rem; }
+  .rating-row { display: flex; align-items: center; gap: 0.8rem; }
+  .rating-label { font-size: 0.78rem; color: var(--muted); width: 30px; text-align: right; flex-shrink: 0; }
+  .rating-bar-wrap { flex: 1; height: 6px; background: var(--border); border-radius: 100px; overflow: hidden; }
+  .rating-bar-fill {
+    height: 100%; background: var(--sage-dark);
+    border-radius: 100px;
+    transition: width 1s ease;
+  }
+  .rating-pct { font-size: 0.72rem; color: var(--muted); width: 30px; flex-shrink: 0; }
+
+  .testimonials-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .testimonial-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 2.2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: none;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.07);
+  }
+
+  .testimonial-top {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.2rem;
+  }
+  .reviewer { display: flex; align-items: center; gap: 0.9rem; }
+  .reviewer-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 600; color: white;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .avatar-sage { background: linear-gradient(135deg, var(--sage), var(--sage-dark)); }
+  .avatar-earth { background: linear-gradient(135deg, var(--earth-light), var(--earth)); }
+  .avatar-gold { background: linear-gradient(135deg, var(--gold-light), var(--gold)); }
+
+  .reviewer-name { font-weight: 500; font-size: 0.9rem; }
+  .reviewer-date { font-size: 0.75rem; color: var(--muted); }
+  .t-stars { display: flex; gap: 2px; color: var(--gold); font-size: 0.75rem; }
+
+  .testimonial-quote {
+    font-size: 0.92rem; line-height: 1.75; color: var(--charcoal);
+    font-weight: 300; margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .testimonial-product {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--sage-dark); border: 1px solid var(--sage-light);
+    padding: 4px 12px; border-radius: 100px;
+  }
+
+  /* ── BLOG ── */
+  #blog { background: var(--warm-white); }
+
+  .blog-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; margin-top: 3.5rem;
+  }
+
+  .blog-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    cursor: none; transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .blog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  }
+
+  .blog-img {
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; position: relative;
+  }
+  .blog-img-1 { background: linear-gradient(135deg, #c8e6cb, #f1f8e9); }
+  .blog-img-2 { background: linear-gradient(135deg, #ffe0b2, #fff3e0); }
+  .blog-img-3 { background: linear-gradient(135deg, #e8d5f5, #f3e5f5); }
+
+  .blog-content { padding: 1.5rem 1.7rem 2rem; }
+  .blog-cat {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--sage-dark); font-weight: 500; margin-bottom: 0.5rem;
+  }
+  .blog-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 500;
+    line-height: 1.35; margin-bottom: 0.7rem;
+  }
+  .blog-excerpt { font-size: 0.82rem; color: var(--muted); line-height: 1.65; font-weight: 300; margin-bottom: 1.2rem; }
+  .blog-meta { display: flex; align-items: center; justify-content: space-between; }
+  .blog-author { font-size: 0.76rem; color: var(--muted); }
+  .read-more {
+    font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--sage-dark); text-decoration: none; font-weight: 500;
+    display: flex; align-items: center; gap: 6px;
+    transition: gap 0.2s;
+  }
+  .read-more:hover { gap: 10px; }
+
+  /* ── FAQ ── */
+  #faq { background: var(--cream); }
+  .faq-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6vw; margin-top: 3.5rem; align-items: start; }
+  .faq-list { display: flex; flex-direction: column; gap: 1px; }
+
+  .faq-item {
+    background: white; border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    margin-bottom: 0.5rem;
+    transition: box-shadow 0.2s;
+  }
+  .faq-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
+
+  .faq-question {
+    width: 100%; background: none; border: none;
+    padding: 1.3rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem; font-weight: 500;
+    color: var(--charcoal); text-align: left;
+    cursor: none; gap: 1rem;
+  }
+  .faq-icon { color: var(--sage-dark); font-size: 0.9rem; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .faq-answer {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    font-size: 0.87rem; color: var(--muted); line-height: 1.7; font-weight: 300;
+    padding: 0 1.5rem;
+  }
+  .faq-item.open .faq-answer { max-height: 200px; padding: 0 1.5rem 1.3rem; }
+
+  .faq-visual {
+    background: var(--soft-black);
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    color: white; position: sticky; top: 100px;
+  }
+  .faq-visual h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem;
+  }
+  .faq-visual p {
+    font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.7; font-weight: 300; margin-bottom: 2rem;
+  }
+  .contact-options { display: flex; flex-direction: column; gap: 0.8rem; }
+  .contact-opt {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.2rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    text-decoration: none; color: white;
+    font-size: 0.85rem; transition: background 0.2s;
+  }
+  .contact-opt:hover { background: rgba(122,158,126,0.2); }
+  .contact-opt i { color: var(--sage-light); font-size: 1rem; width: 20px; }
+
+  /* ── NEWSLETTER ── */
+  #newsletter {
+    background: linear-gradient(135deg, var(--sage-dark) 0%, var(--earth) 100%);
+    color: white; text-align: center;
+    padding: 90px 7vw;
+    position: relative; overflow: hidden;
+  }
+  #newsletter::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  #newsletter .section-title { color: white; }
+  #newsletter .section-sub { color: rgba(255,255,255,0.7); margin: 0 auto 2.5rem; }
+  #newsletter .section-tag { color: rgba(255,255,255,0.7); justify-content: center; }
+  #newsletter .section-tag::before, #newsletter .section-tag::after { background: rgba(255,255,255,0.2); }
+
+  .newsletter-form {
+    display: flex; gap: 0; max-width: 520px; margin: 0 auto;
+    position: relative; z-index: 2;
+  }
+  .newsletter-input {
+    flex: 1; padding: 16px 22px;
+    border: none; border-radius: 4px 0 0 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    color: white; outline: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-right: none;
+  }
+  .newsletter-input::placeholder { color: rgba(255,255,255,0.5); }
+  .newsletter-input:focus { background: rgba(255,255,255,0.2); }
+  .newsletter-btn {
+    background: white; color: var(--sage-dark);
+    border: none; border-radius: 0 4px 4px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 16px 28px; cursor: none;
+    transition: background 0.2s;
+  }
+  .newsletter-btn:hover { background: var(--cream); }
+  .newsletter-perks {
+    display: flex; justify-content: center; gap: 2.5rem;
+    margin-top: 2rem; flex-wrap: wrap; position: relative; z-index: 2;
+  }
+  .perk { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: rgba(255,255,255,0.75); }
+  .perk i { font-size: 0.85rem; color: rgba(255,255,255,0.9); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--soft-black); color: white;
+    padding: 80px 7vw 40px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    gap: 4rem; margin-bottom: 4rem;
+  }
+  .footer-brand h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 400; margin-bottom: 1rem;
+    letter-spacing: 0.03em;
+  }
+  .footer-brand h3 span { color: var(--sage-light); font-style: italic; }
+  .footer-brand p {
+    font-size: 0.85rem; color: rgba(255,255,255,0.45);
+    line-height: 1.75; font-weight: 300; max-width: 280px;
+    margin-bottom: 1.8rem;
+  }
+  .social-links { display: flex; gap: 0.8rem; }
+  .social-link {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.6); font-size: 0.85rem;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .social-link:hover { background: var(--sage-dark); color: white; border-color: var(--sage-dark); }
+
+  .footer-col h4 {
+    font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); margin-bottom: 1.4rem; font-weight: 500;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer-links a {
+    font-size: 0.87rem; color: rgba(255,255,255,0.55);
+    text-decoration: none; transition: color 0.2s;
+    font-weight: 300;
+  }
+  .footer-links a:hover { color: var(--sage-light); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); font-weight: 300; }
+  .footer-badges { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; }
+  .footer-badge {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.72rem; color: rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 5px 12px; border-radius: 100px;
+  }
+  .footer-badge i { font-size: 0.75rem; color: var(--sage-light); }
+
+  /* ── CART DRAWER ── */
+  .cart-drawer {
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: 380px; background: white;
+    box-shadow: -10px 0 50px rgba(0,0,0,0.12);
+    z-index: 200; transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex; flex-direction: column;
+  }
+  .cart-drawer.open { transform: translateX(0); }
+
+  .cart-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4); z-index: 199;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .cart-overlay.show { opacity: 1; pointer-events: all; }
+
+  .cart-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 2rem; border-bottom: 1px solid var(--border);
+  }
+  .cart-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 500;
+  }
+  .cart-close {
+    background: none; border: none; font-size: 1.1rem;
+    color: var(--muted); cursor: none; transition: color 0.2s;
+  }
+  .cart-close:hover { color: var(--charcoal); }
+
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+  .cart-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .cart-item-img {
+    width: 70px; height: 70px;
+    background: var(--cream); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; flex-shrink: 0;
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .cart-item-price { font-size: 0.85rem; color: var(--sage-dark); margin-bottom: 0.6rem; }
+  .qty-control { display: flex; align-items: center; gap: 0.6rem; }
+  .qty-btn { width: 26px; height: 26px; background: var(--cream); border: 1px solid var(--border); border-radius: 6px; font-size: 0.85rem; cursor: none; transition: background 0.2s; display: flex; align-items: center; justify-content: center; }
+  .qty-btn:hover { background: var(--sage-light); }
+  .qty-num { font-size: 0.85rem; font-weight: 500; min-width: 20px; text-align: center; }
+
+  .cart-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--border); }
+  .cart-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
+  .cart-total-label { font-size: 0.85rem; color: var(--muted); }
+  .cart-total-price { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; }
+  .checkout-btn {
+    display: block; width: 100%; background: var(--sage-dark); color: white;
+    border: none; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 16px; cursor: none; transition: background 0.25s;
+    text-align: center;
+  }
+  .checkout-btn:hover { background: var(--earth); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MOBILE NAV ── */
+  .mobile-menu {
+    position: fixed; inset: 0;
+    background: var(--warm-white); z-index: 150;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 2.5rem;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .mobile-menu.open { transform: translateY(0); }
+  .mobile-menu a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 300;
+    color: var(--charcoal); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--sage-dark); }
+  .mobile-close {
+    position: absolute; top: 1.5rem; right: 4vw;
+    background: none; border: none; font-size: 1.3rem;
+    color: var(--charcoal); cursor: none;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1200px) {
+    .products-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 4rem 7vw 5rem; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .benefits-visual { display: none; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .ingredients-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials-layout { grid-template-columns: 1fr; }
+    .testimonials-summary { position: static; }
+    .blog-grid { grid-template-columns: 1fr 1fr; }
+    .faq-layout { grid-template-columns: 1fr; }
+    .faq-visual { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 70px 5vw; }
+    .products-grid { grid-template-columns: 1fr; }
+    .ingredients-grid { grid-template-columns: 1fr; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .newsletter-form { flex-direction: column; border-radius: 8px; }
+    .newsletter-input { border-radius: 8px 8px 0 0; border-right: 1px solid rgba(255,255,255,0.2); border-bottom: none; }
+    .newsletter-btn { border-radius: 0 0 8px 8px; }
+    nav { padding: 0 5vw; }
+    .cart-drawer { width: 100vw; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+  <a href="#hero">Home</a>
+  <a href="#shop">Shop</a>
+  <a href="#benefits">Benefits</a>
+  <a href="#ingredients">Ingredients</a>
+  <a href="#blog">Blog</a>
+  <a href="#faq">FAQ</a>
+</div>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="cart-title">Your Cart (3)</span>
+    <button class="cart-close" id="cartClose"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items">
+    <div class="cart-item">
+      <div class="cart-item-img">🌿</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">CBD Relief Balm</div>
+        <div class="cart-item-price">$48.00</div>
+        <div class="qty-control">
+          <button class="qty-btn"><i class="fas fa-minus"></i></button>
+          <span class="qty-num">1</span>
+          <button class="qty-btn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <div class="cart-item-img">🍃</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">Ashwagandha Calm</div>
+        <div class="cart-item-price">$36.00</div>
+        <div class="qty-control">
+          <button class="qty-btn"><i class="fas fa-minus"></i></button>
+          <span class="qty-num">2</span>
+          <button class="qty-btn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <div class="cart-item-img">🌺</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">Lavender Sleep Oil</div>
+        <div class="cart-item-price">$42.00</div>
+        <div class="qty-control">
+          <button class="qty-btn"><i class="fas fa-minus"></i></button>
+          <span class="qty-num">1</span>
+          <button class="qty-btn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span class="cart-total-label">Order Total</span>
+      <span class="cart-total-price">$162.00</span>
+    </div>
+    <button class="checkout-btn"><i class="fas fa-lock" style="margin-right:8px"></i>Secure Checkout</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Verdana<span>Naturals</span></a>
+  <ul class="nav-links">
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#benefits">Benefits</a></li>
+    <li><a href="#ingredients">Ingredients</a></li>
+    <li><a href="#blog">Learn</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-icon-btn"><i class="fas fa-search"></i></button>
+    <button class="nav-icon-btn" id="cartBtn" style="position:relative">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-badge">3</span>
+    </button>
+    <a href="#shop" class="nav-cta">Shop Now</a>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">
+      <i class="fas fa-leaf"></i>
+      100% Natural — Science Backed
+    </div>
+    <h1 class="hero-h1">
+      Nature's Answer to<br>
+      <em>Pain & Stress</em><br>
+      Relief
+    </h1>
+    <p class="hero-desc">
+      Handcrafted botanical formulas that work with your body's natural rhythms — not against them. No chemicals. No compromise. Just pure, effective relief.
+    </p>
+    <div class="hero-btns">
+      <a href="#shop" class="btn-primary">
+        <i class="fas fa-shopping-bag"></i>
+        Shop Collection
+      </a>
+      <a href="#benefits" class="btn-outline">
+        <i class="fas fa-play-circle"></i>
+        See How It Works
+      </a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><i class="fas fa-certificate"></i> GMP Certified</div>
+      <div class="trust-item"><i class="fas fa-leaf"></i> Organic Ingredients</div>
+      <div class="trust-item"><i class="fas fa-flask"></i> Lab Tested</div>
+      <div class="trust-item"><i class="fas fa-shipping-fast"></i> Free Shipping $60+</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-circles">
+        <div class="h-circle"></div>
+        <div class="h-circle"></div>
+        <div class="h-circle"></div>
+      </div>
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="hero-badge">✦ Best Seller</div>
+      <div class="hero-product-card">
+        <div class="product-card-img">🌿</div>
+        <div class="product-card-name">Serenity Relief Balm</div>
+        <div class="product-card-sub">Fast-absorbing · Non-greasy</div>
+        <div class="product-card-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-card-price">
+          <span class="price-val">$48.00</span>
+          <button class="add-btn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot"></span> Free Shipping on Orders Over $60</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> 30-Day Money Back Guarantee</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> 100% Natural Ingredients</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Certified Organic</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Third-Party Lab Tested</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Free Shipping on Orders Over $60</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> 30-Day Money Back Guarantee</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> 100% Natural Ingredients</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Certified Organic</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Third-Party Lab Tested</span>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<section id="benefits">
+  <div class="section-tag">Why Verdana Naturals</div>
+  <h2 class="section-title reveal">Crafted for <em>lasting</em><br>wellness — not quick fixes</h2>
+  <p class="section-sub reveal reveal-delay-1">Our formulas are rooted in centuries of botanical wisdom, refined by modern science to deliver targeted, effective, and safe natural relief.</p>
+
+  <div class="benefits-grid">
+    <div class="benefits-list">
+      <div class="benefit-item reveal">
+        <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+        <div class="benefit-content">
+          <h3>Fast-Acting Relief</h3>
+          <p>Our transdermal formulas penetrate deep into muscle and joint tissue, delivering targeted relief in as little as 15–20 minutes.</p>
+        </div>
+      </div>
+      <div class="benefit-item reveal reveal-delay-1">
+        <div class="benefit-icon"><i class="fas fa-seedling"></i></div>
+        <div class="benefit-content">
+          <h3>Certified Organic Sourcing</h3>
+          <p>Every ingredient is ethically sourced from organic farms — free from synthetic pesticides, GMOs, and harmful additives.</p>
+        </div>
+      </div>
+      <div class="benefit-item reveal reveal-delay-2">
+        <div class="benefit-icon"><i class="fas fa-microscope"></i></div>
+        <div class="benefit-content">
+          <h3>Third-Party Lab Verified</h3>
+          <p>Every batch is independently tested for purity, potency, and safety. We publish all Certificates of Analysis on our website.</p>
+        </div>
+      </div>
+      <div class="benefit-item reveal reveal-delay-3">
+        <div class="benefit-icon"><i class="fas fa-heart"></i></div>
+        <div class="benefit-content">
+          <h3>No Side Effects</h3>
+          <p>Plant-based actives that work naturally with your body — no drowsiness, no dependency, and no pharmaceutical side effects.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="benefits-visual reveal">
+      <div class="benefits-center-img">🌱</div>
+      <div class="benefit-stat benefit-stat-1">
+        <div class="stat-num">94%</div>
+        <div class="stat-label">Report Relief</div>
+      </div>
+      <div class="benefit-stat benefit-stat-2">
+        <div class="stat-num">50K+</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop">
+  <div class="shop-header">
+    <div>
+      <div class="section-tag">Our Collection</div>
+      <h2 class="section-title">Natural Relief, <em>Every Form</em></h2>
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterProducts(this, 'all')">All Products</button>
+        <button class="filter-tab" onclick="filterProducts(this, 'topical')">Topicals</button>
+        <button class="filter-tab" onclick="filterProducts(this, 'supplement')">Supplements</button>
+        <button class="filter-tab" onclick="filterProducts(this, 'wellness')">Wellness</button>
+        <button class="filter-tab" onclick="filterProducts(this, 'bundle')">Bundles</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="products-grid" id="productsGrid">
+
+    <div class="product-card reveal" data-category="topical">
+      <div class="product-img sage-bg">
+        🌿
+        <span class="product-badge badge-best">Best Seller</span>
+        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Topical · Pain Relief</div>
+        <div class="product-name">Serenity Relief Balm</div>
+        <div class="product-desc-short">Arnica + CBD formula for deep muscle & joint relief.</div>
+        <div class="product-stars">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <span class="review-count">(312 reviews)</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-main">$48.00</span>
+          </div>
+          <button class="btn-add-cart"><i class="fas fa-plus"></i> Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-1" data-category="supplement">
+      <div class="product-img earth-bg">
+        🍃
+        <span class="product-badge badge-new">New</span>
+        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Supplement · Stress Relief</div>
+        <div class="product-name">Ashwagandha Calm Capsules</div>
+        <div class="product-desc-short">Adaptogenic formula to lower cortisol and ease anxiety.</div>
+        <div class="product-stars">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <span class="review-count">(187 reviews)</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-main">$36.00</span>
+          </div>
+          <button class="btn-add-cart"><i class="fas fa-plus"></i> Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-2" data-category="wellness">
+      <div class="product-img gold-bg">
+        🌺
+        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Wellness · Sleep</div>
+        <div class="product-name">Lavender Sleep Oil</div>
+        <div class="product-desc-short">Lavender + valerian root blend for restful, deep sleep.</div>
+        <div class="product-stars">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <span class="review-count">(245 reviews)</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-main">$42.00</span>
+          </div>
+          <button class="btn-add-cart"><i class="fas fa-plus"></i> Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-3" data-category="topical">
+      <div class="product-img rose-bg">
+        🌸
+        <span class="product-badge badge-sale">–20%</span>
+        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Topical · Inflammation</div>
+        <div class="product-name">Turmeric Glow Cream</div>
+        <div class="product-desc-short">Anti-inflammatory turmeric & rosehip for skin & joints.</div>
+        <div class="product-stars">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+          </div>
+          <span class="review-count">(98 reviews)</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-main">$38.00</span>
+            <span class="price-old">$47.50</span>
+          </div>
+          <button class="btn-add-cart"><i class="fas fa-plus"></i> Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="supplement">
+      <div class="product-img sage-bg">
+        🫐
+        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Supplement · Anti-Inflammatory</div>
+        <div class="product-name">Elderberry Defense+</div>
+        <div class="product-desc-short">Immune-boosting elderberry with zinc and vitamin C complex.</div>
+        <div class="product-stars">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <span class="review-count">(156 reviews)</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-main">$32.00</span>
+          </div>
+          <button class="btn-add-cart"><i class="fas fa-plus"></i> Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-1" data-category="bundle">
+      <div class="product-img earth-bg">
+        🎁
+        <span class="product-badge badge-best">Value</span>
+        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Bundle · Save 25%</div>
+        <div class="product-name">Complete Wellness Bundle</div>
+        <div class="product-desc-short">Our three bestsellers — Balm, Capsules & Sleep Oil together.</div>
+        <div class="product-stars">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <span class="review-count">(74 reviews)</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-main">$94.00</span>
+            <span class="price-old">$126.00</span>
+          </div>
+          <button class="btn-add-cart"><i class="fas fa-plus"></i> Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-2" data-category="wellness">
+      <div class="product-img gold-bg">
+        🍵
+        <span class="product-badge badge-new">New</span>
+        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Wellness · Mind</div>
+        <div class="product-name">Stress Relief Tea Blend</div>
+        <div class="product-desc-short">Chamomile, passionflower & lemon balm herbal tea ritual.</div>
+        <div class="product-stars">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <span class="review-count">(203 reviews)</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-main">$24.00</span>
+          </div>
+          <button class="btn-add-cart"><i class="fas fa-plus"></i> Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-3" data-category="topical">
+      <div class="product-img rose-bg">
+        🔥
+        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Topical · Heat Therapy</div>
+        <div class="product-name">Warming Pain Rub</div>
+        <div class="product-desc-short">Cayenne & menthol warming rub for chronic pain management.</div>
+        <div class="product-stars">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <span class="review-count">(119 reviews)</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-main">$34.00</span>
+          </div>
+          <button class="btn-add-cart"><i class="fas fa-plus"></i> Add</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="shop-view-all reveal">
+    <a href="#" class="btn-outline">
+      View All Products <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section id="ingredients">
+  <div class="section-tag">The Science of Nature</div>
+  <h2 class="section-title">Key Ingredients That <em>Actually Work</em></h2>
+  <p class="section-sub">We use only the most studied, potent, and bioavailable botanicals — each chosen for a specific, proven purpose in our formulas.</p>
+
+  <div class="ingredients-grid">
+    <div class="ingredient-card reveal">
+      <span class="ingredient-emoji">🌿</span>
+      <div class="ingredient-name">Arnica Montana</div>
+      <p class="ingredient-benefit">A powerful anti-inflammatory alpine flower used for centuries to reduce bruising, muscle soreness, and joint swelling. Clinically shown to be as effective as ibuprofen gel.</p>
+      <span class="ingredient-tag">Anti-inflammatory</span>
+    </div>
+    <div class="ingredient-card reveal reveal-delay-1">
+      <span class="ingredient-emoji">🍂</span>
+      <div class="ingredient-name">Ashwagandha Root</div>
+      <p class="ingredient-benefit">An ancient Ayurvedic adaptogen clinically proven to lower cortisol levels by up to 30%, reduce anxiety symptoms, and improve stress resilience in just 8 weeks.</p>
+      <span class="ingredient-tag">Adaptogen</span>
+    </div>
+    <div class="ingredient-card reveal reveal-delay-2">
+      <span class="ingredient-emoji">💜</span>
+      <div class="ingredient-name">Lavender Essential Oil</div>
+      <p class="ingredient-benefit">Clinically studied for its calming effects on the central nervous system. Reduces anxiety, promotes sleep onset, and provides mild analgesic pain-relieving properties.</p>
+      <span class="ingredient-tag">Calming</span>
+    </div>
+    <div class="ingredient-card reveal">
+      <span class="ingredient-emoji">🟡</span>
+      <div class="ingredient-name">Turmeric (Curcumin)</div>
+      <p class="ingredient-benefit">Curcumin is one of nature's most powerful anti-inflammatory compounds, shown to inhibit the same inflammatory pathway as NSAIDs — without digestive side effects.</p>
+      <span class="ingredient-tag">Anti-oxidant</span>
+    </div>
+    <div class="ingredient-card reveal reveal-delay-1">
+      <span class="ingredient-emoji">🌱</span>
+      <div class="ingredient-name">CBD (Full Spectrum)</div>
+      <p class="ingredient-benefit">Interacts with the body's endocannabinoid system to modulate pain signals, reduce inflammation, and promote systemic balance — without psychoactive effects.</p>
+      <span class="ingredient-tag">Pain Modulation</span>
+    </div>
+    <div class="ingredient-card reveal reveal-delay-2">
+      <span class="ingredient-emoji">🌼</span>
+      <div class="ingredient-name">Chamomile Extract</div>
+      <p class="ingredient-benefit">Rich in apigenin, a natural compound that binds to GABA receptors in the brain to reduce anxiety and promote restful sleep — nature's mild sedative.</p>
+      <span class="ingredient-tag">Sleep Aid</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-tag">Customer Stories</div>
+  <h2 class="section-title reveal">Real people. <em>Real Results.</em></h2>
+
+  <div class="testimonials-layout">
+    <div class="testimonials-summary reveal">
+      <div class="rating-big">4.9</div>
+      <div class="rating-stars-big">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+      </div>
+      <div class="rating-count">Based on 1,247 reviews</div>
+      <div class="rating-bars">
+        <div class="rating-row">
+          <span class="rating-label">5★</span>
+          <div class="rating-bar-wrap"><div class="rating-bar-fill" style="width:82%"></div></div>
+          <span class="rating-pct">82%</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">4★</span>
+          <div class="rating-bar-wrap"><div class="rating-bar-fill" style="width:12%"></div></div>
+          <span class="rating-pct">12%</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">3★</span>
+          <div class="rating-bar-wrap"><div class="rating-bar-fill" style="width:4%"></div></div>
+          <span class="rating-pct">4%</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">2★</span>
+          <div class="rating-bar-wrap"><div class="rating-bar-fill" style="width:1%"></div></div>
+          <span class="rating-pct">1%</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">1★</span>
+          <div class="rating-bar-wrap"><div class="rating-bar-fill" style="width:1%"></div></div>
+          <span class="rating-pct">1%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonials-list">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-top">
+          <div class="reviewer">
+            <div class="reviewer-avatar avatar-sage">S</div>
+            <div>
+              <div class="reviewer-name">Sarah M.</div>
+              <div class="reviewer-date">Verified Buyer · Feb 2025</div>
+            </div>
+          </div>
+          <div class="t-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        <p class="testimonial-quote">"After years of chronic back pain, I was skeptical. But the Serenity Balm genuinely changed my daily life. I apply it before bed and wake up with virtually no stiffness. It's become an absolute non-negotiable in my routine."</p>
+        <span class="testimonial-product"><i class="fas fa-leaf"></i> Serenity Relief Balm</span>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-top">
+          <div class="reviewer">
+            <div class="reviewer-avatar avatar-earth">J</div>
+            <div>
+              <div class="reviewer-name">James T.</div>
+              <div class="reviewer-date">Verified Buyer · Jan 2025</div>
+            </div>
+          </div>
+          <div class="t-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        <p class="testimonial-quote">"I've tried every stress supplement on the market. The Ashwagandha Calm capsules are the first thing that actually made a noticeable difference in my anxiety levels within the first two weeks. Highly recommend to anyone with a demanding job."</p>
+        <span class="testimonial-product"><i class="fas fa-leaf"></i> Ashwagandha Calm Capsules</span>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-top">
+          <div class="reviewer">
+            <div class="reviewer-avatar avatar-gold">L</div>
+            <div>
+              <div class="reviewer-name">Linda R.</div>
+              <div class="reviewer-date">Verified Buyer · Mar 2025</div>
+            </div>
+          </div>
+          <div class="t-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+        <p class="testimonial-quote">"The Lavender Sleep Oil is absolute magic. I've been an insomniac for 10 years. Three drops on my pillow and 15 minutes of reading — I'm asleep. The quality of my sleep has improved dramatically and I wake up actually rested."</p>
+        <span class="testimonial-product"><i class="fas fa-leaf"></i> Lavender Sleep Oil</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-tag">Education & Wellness</div>
+  <h2 class="section-title reveal">Learn From <em>Our Experts</em></h2>
+  <p class="section-sub reveal reveal-delay-1">Evidence-based articles on natural pain relief, stress management, and holistic wellness — written by naturopathic doctors and herbalists.</p>
+
+  <div class="blog-grid">
+    <div class="blog-card reveal">
+      <div class="blog-img blog-img-1">🌿</div>
+      <div class="blog-content">
+        <div class="blog-cat">Pain Relief</div>
+        <div class="blog-title">Why CBD + Arnica Is The Most Powerful Natural Pain Combination</div>
+        <div class="blog-excerpt">A deep dive into the synergistic anti-inflammatory mechanism that makes topical CBD-arnica formulas more effective than either ingredient alone.</div>
+        <div class="blog-meta">
+          <span class="blog-author">Dr. Maya Chen, ND · 8 min read</span>
+          <a href="#" class="read-more">Read <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-card reveal reveal-delay-1">
+      <div class="blog-img blog-img-2">🧘</div>
+      <div class="blog-content">
+        <div class="blog-cat">Stress & Anxiety</div>
+        <div class="blog-title">5 Adaptogens That Clinical Research Proves Reduce Cortisol</div>
+        <div class="blog-excerpt">Not all stress supplements are equal. We break down the top 5 adaptogenic herbs with actual human clinical trial data backing their efficacy.</div>
+        <div class="blog-meta">
+          <span class="blog-author">James Kelley, MH · 6 min read</span>
+          <a href="#" class="read-more">Read <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-card reveal reveal-delay-2">
+      <div class="blog-img blog-img-3">🌙</div>
+      <div class="blog-content">
+        <div class="blog-cat">Sleep Science</div>
+        <div class="blog-title">The Herbal Sleep Protocol That Actually Works (According to Science)</div>
+        <div class="blog-excerpt">Chronic insomnia doesn't have to mean pharmaceuticals. Discover the evidence-backed botanical sleep stack that's changing lives naturally.</div>
+        <div class="blog-meta">
+          <span class="blog-author">Dr. Priya Nair, ND · 10 min read</span>
+          <a href="#" class="read-more">Read <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-tag">Common Questions</div>
+  <h2 class="section-title reveal">Frequently Asked <em>Questions</em></h2>
+
+  <div class="faq-layout">
+    <div class="faq-list reveal">
+      <div class="faq-item open">
+        <button class="faq-question">
+          Are your products really 100% natural?
+          <i class="fas fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">Yes — every single ingredient across our product line is plant-derived and certified organic where possible. We never use synthetic preservatives, artificial fragrances, or petroleum-derived ingredients. Every product's full ingredient list is on the label and on our website.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          How long before I notice results?
+          <i class="fas fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">Topical products like our balms and creams typically provide relief within 15–30 minutes of application. Oral supplements like capsules generally take 2–4 weeks of consistent use to show systemic effects, as with all botanical supplements.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you offer a money-back guarantee?
+          <i class="fas fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">Absolutely. We stand behind every product with a 30-day, no-questions-asked satisfaction guarantee. If you're not completely happy for any reason, contact our team for a full refund or exchange. No return shipping required.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Are your products third-party tested?
+          <i class="fas fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">Every batch is independently tested by an ISO-accredited third-party laboratory for purity, potency, heavy metals, pesticides, and microbials. You can access any product's Certificate of Analysis (COA) directly on its product page.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          What's your shipping policy?
+          <i class="fas fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">We offer free standard shipping on all US orders over $60. Orders typically ship within 1–2 business days and arrive in 3–5 business days. Expedited 2-day and overnight options are available at checkout. We also ship internationally to 40+ countries.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I take these alongside prescription medication?
+          <i class="fas fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">While our products are generally very well tolerated, we always recommend consulting your healthcare provider before starting any new supplement — especially if you take prescription medications, are pregnant, or have a chronic health condition.</div>
+      </div>
+    </div>
+
+    <div class="faq-visual reveal reveal-delay-1">
+      <h3>Still have questions?</h3>
+      <p>Our wellness experts are available 7 days a week to answer any questions about our products, ingredients, or your specific health needs.</p>
+      <div class="contact-options">
+        <a href="#" class="contact-opt">
+          <i class="fas fa-comments"></i>
+          <div>
+            <div style="font-weight:500;font-size:0.88rem">Live Chat</div>
+            <div style="font-size:0.75rem;opacity:0.5">Available Mon–Sun, 8am–8pm EST</div>
+          </div>
+        </a>
+        <a href="#" class="contact-opt">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <div style="font-weight:500;font-size:0.88rem">Email Support</div>
+            <div style="font-size:0.75rem;opacity:0.5">hello@verdananaturals.com</div>
+          </div>
+        </a>
+        <a href="#" class="contact-opt">
+          <i class="fas fa-phone"></i>
+          <div>
+            <div style="font-weight:500;font-size:0.88rem">Phone Support</div>
+            <div style="font-size:0.75rem;opacity:0.5">1-800-VERDANA · Mon–Fri</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="section-tag">Stay Connected</div>
+  <h2 class="section-title reveal">Get 15% Off Your <em>First Order</em></h2>
+  <p class="section-sub reveal reveal-delay-1">Join 50,000+ wellness seekers. Receive exclusive discounts, expert wellness articles, and early access to new products.</p>
+
+  <div class="newsletter-form reveal reveal-delay-2">
+    <input type="email" class="newsletter-input" placeholder="Enter your email address">
+    <button class="newsletter-btn">Subscribe</button>
+  </div>
+
+  <div class="newsletter-perks reveal reveal-delay-3">
+    <div class="perk"><i class="fas fa-tag"></i> 15% off first order</div>
+    <div class="perk"><i class="fas fa-book-open"></i> Weekly wellness tips</div>
+    <div class="perk"><i class="fas fa-gift"></i> Early access to new products</div>
+    <div class="perk"><i class="fas fa-ban"></i> No spam, ever</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Verdana<span>Naturals</span></h3>
+      <p>We believe nature provides the most powerful, sustainable solutions for pain and stress relief. Our mission is to make high-quality botanical wellness accessible to everyone.</p>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul class="footer-links">
+        <li><a href="#">All Products</a></li>
+        <li><a href="#">Pain Relief</a></li>
+        <li><a href="#">Stress & Anxiety</a></li>
+        <li><a href="#">Sleep Support</a></li>
+        <li><a href="#">Bundles & Sets</a></li>
+        <li><a href="#">New Arrivals</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Learn</h4>
+      <ul class="footer-links">
+        <li><a href="#">Our Blog</a></li>
+        <li><a href="#">Ingredients Library</a></li>
+        <li><a href="#">Research & Science</a></li>
+        <li><a href="#">Dosage Guides</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Sustainability</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul class="footer-links">
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns & Refunds</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Verdana Naturals. All rights reserved. These statements have not been evaluated by the FDA.</span>
+    <div class="footer-badges">
+      <span class="footer-badge"><i class="fas fa-lock"></i> SSL Secured</span>
+      <span class="footer-badge"><i class="fas fa-leaf"></i> Certified Organic</span>
+      <span class="footer-badge"><i class="fas fa-flask"></i> Lab Tested</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    cursorRing.style.left = e.clientX + 'px';
+    cursorRing.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .product-card, .benefit-item, .faq-item, .blog-card, .testimonial-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cursorRing.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovered'));
+  });
+
+  // Sticky Nav
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll Reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // FAQ
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Cart Drawer
+  const cartBtn = document.getElementById('cartBtn');
+  const cartDrawer = document.getElementById('cartDrawer');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const cartClose = document.getElementById('cartClose');
+
+  function openCart() { cartDrawer.classList.add('open'); cartOverlay.classList.add('show'); }
+  function closeCart() { cartDrawer.classList.remove('open'); cartOverlay.classList.remove('show'); }
+  cartBtn.addEventListener('click', openCart);
+  cartClose.addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+
+  // Add to Cart buttons
+  document.querySelectorAll('.btn-add-cart, .add-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      btn.innerHTML = '<i class="fas fa-check"></i> Added!';
+      btn.style.background = 'var(--earth)';
+      setTimeout(() => {
+        btn.innerHTML = btn.classList.contains('add-btn')
+          ? '<i class="fas fa-plus"></i>'
+          : '<i class="fas fa-plus"></i> Add';
+        btn.style.background = '';
+      }, 1800);
+    });
+  });
+
+  // Mobile Menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+  hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // Product Filter
+  function filterProducts(btn, category) {
+    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card => {
+      const match = category === 'all' || card.dataset.category === category;
+      card.style.display = match ? 'block' : 'none';
+    });
+  }
+
+  // Newsletter
+  document.querySelector('.newsletter-btn').addEventListener('click', () => {
+    const input = document.querySelector('.newsletter-input');
+    if (input.value.includes('@')) {
+      input.value = '';
+      input.placeholder = '🎉 You\'re in! Check your inbox for 15% off.';
+      setTimeout(() => { input.placeholder = 'Enter your email address'; }, 5000);
+    }
+  });
+
+  // Wishlist toggle
+  document.querySelectorAll('.wishlist-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const icon = btn.querySelector('i');
+      icon.classList.toggle('far');
+      icon.classList.toggle('fas');
+      btn.style.color = icon.classList.contains('fas') ? 'var(--red-soft)' : '';
+    });
+  });
+</script>
+</body>
+</html>
